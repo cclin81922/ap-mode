@@ -21,19 +21,19 @@ FLAVOR=g1-small
 KEYPAIR=
 
 function destroy() {
-    gcloud compute instances delete r1_host1
+    gcloud compute instances delete r1-host1
 }
 
 function start() {
-    gcloud compute instances start r1_host1
+    gcloud compute instances start r1-host1
 }
 
 function halt() {
-    gcloud compute instances stop r1_host1
+    gcloud compute instances stop r1-host1
 }
 
 function up() {
-    gcloud compute instances create r1_host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --no-address --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r1-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --no-address --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
 }
 
 function init() {
