@@ -1,3 +1,6 @@
+NETWORK=405d0f4d-ee2e-4d41-a1d1-f53962df2b02
+SUBNET=7409311e-73dd-419c-84ba-d31b83d8d069
+
 R1_VIP=192.168.33.100
 R1_HOST1_IP=192.168.33.101
 R1_HOTS2_IP=192.168.33.102
@@ -10,17 +13,22 @@ R3_VIP=192.168.33.120
 R3_HOST1_IP=192.168.33.121
 R3_HOST2_IP=192.168.33.122
 
-NETWORK=405d0f4d-ee2e-4d41-a1d1-f53962df2b02
-SUBNET=7409311e-73dd-419c-84ba-d31b83d8d069
+IMAGE=vm-c7
+FLAVOR=1C1G5G
+KEYPAIR=devops
 
 function destroy() {
-    openstack server delete
-    openstack server delete
+    openstack server delete r1_host1
 }
 
 function up() {
-    openstack server create
-    openstack server create
+    R1_HOST1_VIF_ID=$(openstack port show $R1_HOST1_IP -c id -f value)
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R1_HOST1_VIF_ID r1_host1
+}
+
+function init() {
+    openstack port create --network $NETWORK --fixed-ip subnet=$SUBNET,ip-address=$R1_VIP $R1_VIP
+    openstack port create --network $NETWORK --fixed-ip subnet=$SUBNET,ip-address=$R1_HOST1_IP --allowed-address ip-address=$R1_VIP $R1_HOST1_IP
 }
 
 $1
