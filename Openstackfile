@@ -37,6 +37,17 @@ function destroy() {
     openstack port delete $R3_VIP
 }
 
+function start() {
+    openstack server start r1_host1
+    openstack server start r1_host2
+
+    openstack server start r2_host1
+    openstack server start r2_host2
+
+    openstack server start r3_host1
+    openstack server start r3_host2
+}
+
 function halt() {
     openstack server stop r1_host2
     openstack server stop r1_host1
