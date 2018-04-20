@@ -1,5 +1,6 @@
-#REGION=asia-east1
-#ZONE=asia-east1-a
+gcloud config set compute/region asia-east1
+gcloud config set compute/zone asia-east1-a
+
 #VPC=default
 #SUBNET=10.140.0.0/20
 
