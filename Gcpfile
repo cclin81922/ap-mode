@@ -33,7 +33,7 @@ function halt() {
 }
 
 function up() {
-    gcloud compute instances create r1-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --no-address --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r1-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
 }
 
 function init() {
