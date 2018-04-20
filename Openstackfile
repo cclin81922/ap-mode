@@ -1,0 +1,26 @@
+R1_VIP=192.168.33.100
+R1_HOST1_IP=192.168.33.101
+R1_HOTS2_IP=192.168.33.102
+
+R2_VIP=192.168.33.110
+R2_HOST1_IP=192.168.33.111
+R2_HOST2_IP=192.168.33.112
+
+R3_VIP=192.168.33.120
+R3_HOST1_IP=192.168.33.121
+R3_HOST2_IP=192.168.33.122
+
+NETWORK=405d0f4d-ee2e-4d41-a1d1-f53962df2b02
+SUBNET=7409311e-73dd-419c-84ba-d31b83d8d069
+
+function destroy() {
+    openstack server delete
+    openstack server delete
+}
+
+function up() {
+    openstack server create
+    openstack server create
+}
+
+$1
