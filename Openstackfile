@@ -19,6 +19,13 @@ KEYPAIR=devops
 
 function destroy() {
     openstack server delete r1_host1
+
+    openstack port delete $R1_HOST1_IP
+    openstack port delete $R1_VIP
+}
+
+function halt() {
+    openstack server stop r1_host1
 }
 
 function up() {
