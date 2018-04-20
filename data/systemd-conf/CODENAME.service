@@ -1,0 +1,12 @@
+[Unit]
+Description=The CODENAME Manager
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/at now + 2 minutes -f /usr/local/bin/start-CODENAME.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

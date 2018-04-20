@@ -1,0 +1,1 @@
+from falcon_app.main import application

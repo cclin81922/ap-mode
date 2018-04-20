@@ -1,0 +1,9 @@
+[server]
+[mysqld]
+read_only
+[galera]
+[embedded]
+[mariadb]
+log-bin
+server_id=1
+[mariadb-10.2]
