@@ -16,7 +16,7 @@ R3_VIP=10.140.0.120
 R3_HOST1_IP=10.140.0.121
 R3_HOST2_IP=10.140.0.122
 
-IMAGE=centos-7-v20180401
+IMAGE=centos-7-v20180401 # --image-project=centos-cloud
 FLAVOR=g1-small
 KEYPAIR=
 
@@ -33,7 +33,7 @@ function halt() {
 }
 
 function up() {
-    gcloud compute instances create r1_host1 --image=$IMAGE --machine-type=$FLAVOR --subnet=default --no-address --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r1_host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --no-address --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
 }
 
 function init() {
