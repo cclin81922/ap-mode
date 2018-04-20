@@ -1,0 +1,40 @@
+#ZONE=asia-east1-a
+#NETWORK=10.140.0.0/20
+
+R1_VIP=10.140.0.100
+R1_HOST1_IP=10.140.0.101
+R1_HOST2_IP=10.140.0.102
+
+R2_VIP=10.140.0.110
+R2_HOST1_IP=10.140.0.111
+R2_HOST2_IP=10.140.0.112
+
+R3_VIP=10.140.0.120
+R3_HOST1_IP=10.140.0.121
+R3_HOST2_IP=10.140.0.122
+
+IMAGE=centos-7-v20180401
+FLAVOR=g1-small
+KEYPAIR=
+
+function destroy() {
+    :
+}
+
+function start() {
+    :
+}
+
+function halt() {
+    :
+}
+
+function up() {
+    gcloud compute instances create r1_host1 --machine-type=$FLAVOR --subnet=default --image=$IMAGE --no-address --private-network-ip=$R1_HOST1_IP
+}
+
+function init() {
+    :
+}
+
+$1
