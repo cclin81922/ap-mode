@@ -21,19 +21,47 @@ FLAVOR=g1-small
 KEYPAIR=
 
 function destroy() {
+    gcloud compute instances delete r1-host2
     gcloud compute instances delete r1-host1
+
+    gcloud compute instances delete r2-host2
+    gcloud compute instances delete r2-host1
+
+    gcloud compute instances delete r3-host2
+    gcloud compute instances delete r3-host1
 }
 
 function start() {
     gcloud compute instances start r1-host1
+    gcloud compute instances start r1-host2
+
+    gcloud compute instances start r2-host1
+    gcloud compute instances start r2-host2
+
+    gcloud compute instances start r3-host1
+    gcloud compute instances start r3-host2
 }
 
 function halt() {
+    gcloud compute instances stop r1-host2
     gcloud compute instances stop r1-host1
+
+    gcloud compute instances stop r2-host2
+    gcloud compute instances stop r2-host1
+
+    gcloud compute instances stop r3-host2
+    gcloud compute instances stop r3-host1
 }
 
 function up() {
     gcloud compute instances create r1-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R1_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r1-host2 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R1_HOST2_IP --metadata=serial-port-enable=yes
+
+    gcloud compute instances create r2-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R2_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r2-host2 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R2_HOST2_IP --metadata=serial-port-enable=yes
+
+    gcloud compute instances create r3-host1 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R3_HOST1_IP --metadata=serial-port-enable=yes
+    gcloud compute instances create r3-host2 --image=$IMAGE --image-project=centos-cloud --machine-type=$FLAVOR --subnet=default --private-network-ip=$R3_HOST2_IP --metadata=serial-port-enable=yes
 }
 
 function init() {
