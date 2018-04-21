@@ -18,62 +18,62 @@ FLAVOR=1C1G5G
 KEYPAIR=devops
 
 function destroy() {
-    openstack server delete r1_host2
-    openstack server delete r1_host1
+    openstack server delete r1-host2
+    openstack server delete r1-host1
     openstack port delete $R1_HOST2_IP
     openstack port delete $R1_HOST1_IP
     openstack port delete $R1_VIP
 
-    openstack server delete r2_host2
-    openstack server delete r2_host1
+    openstack server delete r2-host2
+    openstack server delete r2-host1
     openstack port delete $R2_HOST2_IP
     openstack port delete $R2_HOST1_IP
     openstack port delete $R2_VIP
 
-    openstack server delete r3_host2
-    openstack server delete r3_host1
+    openstack server delete r3-host2
+    openstack server delete r3-host1
     openstack port delete $R3_HOST2_IP
     openstack port delete $R3_HOST1_IP
     openstack port delete $R3_VIP
 }
 
 function start() {
-    openstack server start r1_host1
-    openstack server start r1_host2
+    openstack server start r1-host1
+    openstack server start r1-host2
 
-    openstack server start r2_host1
-    openstack server start r2_host2
+    openstack server start r2-host1
+    openstack server start r2-host2
 
-    openstack server start r3_host1
-    openstack server start r3_host2
+    openstack server start r3-host1
+    openstack server start r3-host2
 }
 
 function halt() {
-    openstack server stop r1_host2
-    openstack server stop r1_host1
+    openstack server stop r1-host2
+    openstack server stop r1-host1
 
-    openstack server stop r2_host2
-    openstack server stop r2_host1
+    openstack server stop r2-host2
+    openstack server stop r2-host1
 
-    openstack server stop r3_host2
-    openstack server stop r3_host1
+    openstack server stop r3-host2
+    openstack server stop r3-host1
 }
 
 function up() {
     R1_HOST1_VIF_ID=$(openstack port show $R1_HOST1_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R1_HOST1_VIF_ID r1_host1
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R1_HOST1_VIF_ID r1-host1
     R1_HOST2_VIF_ID=$(openstack port show $R1_HOST2_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R1_HOST2_VIF_ID r1_host2
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R1_HOST2_VIF_ID r1-host2
 
     R2_HOST1_VIF_ID=$(openstack port show $R2_HOST1_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R2_HOST1_VIF_ID r2_host1
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R2_HOST1_VIF_ID r2-host1
     R2_HOST2_VIF_ID=$(openstack port show $R2_HOST2_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R2_HOST2_VIF_ID r2_host2
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R2_HOST2_VIF_ID r2-host2
 
     R3_HOST1_VIF_ID=$(openstack port show $R3_HOST1_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R3_HOST1_VIF_ID r3_host1
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R3_HOST1_VIF_ID r3-host1
     R3_HOST2_VIF_ID=$(openstack port show $R3_HOST2_IP -c id -f value)
-    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R3_HOST2_VIF_ID r3_host2
+    openstack server create --image $IMAGE --flavor $FLAVOR --key-name "$KEYPAIR" --nic port-id=$R3_HOST2_VIF_ID r3-host2
 }
 
 function init() {
